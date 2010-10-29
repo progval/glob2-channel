@@ -35,7 +35,7 @@ import time
 
 import xchat
 
-__module_name__ = "Tournois glob2 by ProgVal" 
+__module_name__ = "glob2 tournaments by ProgVal" 
 __module_version__ = "0.1" 
 __module_description__ = "Tournaments managment for #glob2 @ OFTC"
 
