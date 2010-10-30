@@ -101,10 +101,13 @@ def catch_msg(words, words_eol, userdata):
     global last_alert
     nick = words[0]
     message = words[1]
+
+    if ((message.startswith('"!') and message.endswith('"')) or (message.startswith("'!") and message.endswith("'")) or (message.startswith("`!") and message.endswith("`"))):
+        xchat.command("MSG %s %s ~> Try without the quotes ;)" % (xchat.get_info("channel"), nick))
     
     if not message.startswith("!") or xchat.get_info("network") != "OFTC":
         return
-    
+
     if (message == "!help" and nick.startswith("[YOG]")) or message == "!help yog":
         xchat.command("MSG %s (help for YOG users:) If you are feed up with getting a welcome message each time you log in, type `!stop`. If you want to send an automatically alert to every people who wants to play but who is not reading the chat, type `!ask4game`. For more information, ask for help, with typing `!ask4help`. You can get a list of people who connects most often to YOG with `!top`." % nick)
     elif (message == "!help" and not nick.startswith("[YOG]")) or message == "!help irc":
