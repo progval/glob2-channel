@@ -127,7 +127,7 @@ def catch_msg(words, words_eol, userdata):
         
         if query_type == "ask4game" and xchat.get_info("network") == "OFTC":
             if len(nicklist) == 0:
-                xchat.command("MSG %s %s ~> Sorry, nobody has subscribed to the alert list :s" % (xchat.get_info("channel"), nick))
+                xchat.command("MSG %s %s ~> Sorry, all the subscribers to the alert list are currently offline :s" % (xchat.get_info("channel"), nick))
             else:
                 xchat.command("MSG %s %s ~> Someone is asking for a game !" % (xchat.get_info("channel"), ' & '.join(nicklist)))
         else:
@@ -174,6 +174,8 @@ def catch_msg(words, words_eol, userdata):
                 break
             top_string = top_string + " %s(%i)" % (logged_nick, count)
         xchat.command("MSG %s Here is the top of the people who connects most : %s" % (nick, top_string))
+    elif message == "!source":
+        xchat.command("MSG %s My source can be found at http://github.com/ProgVal/glob2-channel" % xchat.get_info("channel"))
 
 # Hook the functions to XChat
 xchat.hook_print(name="Private Message", callback=catch_msg, userdata=None, priority=xchat.PRI_NORM)
